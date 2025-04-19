@@ -30,6 +30,7 @@ const user = page.props.auth.user as User;
 
 const form = useForm({
     name: user.name,
+    username: user.username,
     email: user.email,
 });
 
@@ -49,6 +50,11 @@ const submit = () => {
                 <HeadingSmall title="Profile information" description="Update your name and email address" />
 
                 <form @submit.prevent="submit" class="space-y-6">
+                    <div class="grid gap-2">
+                        <Label for="username">Username</Label>
+                        <Input id="username" class="mt-1 block w-full" v-model="form.username" required placeholder="Username" />
+                        <InputError class="mt-2" :message="form.errors.username" />
+                    </div>
                     <div class="grid gap-2">
                         <Label for="name">Name</Label>
                         <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" placeholder="Full name" />
@@ -70,7 +76,7 @@ const submit = () => {
                     </div>
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">
-                        <p class="-mt-4 text-sm text-muted-foreground">
+                        <p class="text-muted-foreground -mt-4 text-sm">
                             Your email address is unverified.
                             <Link
                                 :href="route('verification.send')"
