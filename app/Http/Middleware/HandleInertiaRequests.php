@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Resources\TopicResource;
 use App\Models\Topic;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class HandleInertiaRequests extends Middleware {
         return [
             ...parent::share($request),
             'name' => config('app.name'),
-            "topics" => Topic::all(),
+            "topics" => TopicResource::collection(Topic::all()),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [
                 'user' => $request->user(),
