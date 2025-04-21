@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Discussion;
 use App\Models\Topic;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -136,28 +137,28 @@ class DatabaseSeeder extends Seeder {
                 'created_at' => now()->subYear()->addDays($index),
                 'updated_at' => now()->subYear()->addDays($index),
             ]);
-            // $i = 1;
-            // foreach ($this->discussionTitles[$topic] as $key => $value) {
-            //     $userId = User::inRandomOrder()->first()->id;
-            //     $discussion = Discussion::create([
-            //         'user_id' => $userId,
-            //         'topic_id' => $topicModel->id,
-            //         'title' => $key,
-            //         'slug' => fake()->slug(),
-            //         'created_at' => now()->subYear()->addDays($i),
-            //         'updated_at' => now()->subYear()->addDays($i),
-            //     ]);
-            //     $i++;
-            //     $postModel = null;
-            //     foreach ($value as $key => $post) {
-            //         $postModel = Post::create([
-            //             'user_id' => $key == 0 ? $userId : User::inRandomOrder()->first()->id,
-            //             'discussion_id' => $discussion->id,
-            //             'parent_id' => $postModel?->id,
-            //             'body' => $post,
-            //         ]);
-            //     }
-            // }
+            $i = 1;
+            foreach ($this->discussionTitles[$topic] as $key => $value) {
+                $userId = User::inRandomOrder()->first()->id;
+                $discussion = Discussion::create([
+                    'user_id' => $userId,
+                    'topic_id' => $topicModel->id,
+                    'title' => $key,
+                    // 'slug' => fake()->slug(),
+                    'created_at' => now()->subYear()->addDays($i),
+                    'updated_at' => now()->subYear()->addDays($i),
+                ]);
+                $i++;
+                // $postModel = null;
+                // foreach ($value as $key => $post) {
+                //     $postModel = Post::create([
+                //         'user_id' => $key == 0 ? $userId : User::inRandomOrder()->first()->id,
+                //         'discussion_id' => $discussion->id,
+                //         'parent_id' => $postModel?->id,
+                //         'body' => $post,
+                //     ]);
+                // }
+            }
 
             // collect( $this->discussionTitles[ $topic ] )->each( function ($title, $index) use ($topicModel) {
             // 	Discussion::create( [
