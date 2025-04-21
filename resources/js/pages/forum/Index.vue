@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import ForumLayout from '@/layouts/ForumLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { SharedData } from '@/types';
+import { Head, usePage } from '@inertiajs/vue3';
+const page = usePage<SharedData>();
 </script>
 
 <template>
@@ -10,6 +12,8 @@ import { Head } from '@inertiajs/vue3';
         <template #side>
             <div>Side content</div>
         </template>
-        <div>main content</div>
+        <div>
+            <div>{{ page.props.topics }}</div>
+        </div>
     </ForumLayout>
 </template>
