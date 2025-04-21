@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import TopicSelector from '@/components/forum/home/TopicSelector.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
-import { SharedData } from '@/types';
-import { Head, usePage } from '@inertiajs/vue3';
-const page = usePage<SharedData>();
+import { Head } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -13,7 +12,7 @@ const page = usePage<SharedData>();
             <div>Side content</div>
         </template>
         <div>
-            <div>{{ page.props.topics }}</div>
+            <TopicSelector />
         </div>
     </ForumLayout>
 </template>
