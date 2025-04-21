@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TopicSelector from '@/components/forum/home/TopicSelector.vue';
+import TopicSelector from '@/components/forum/home/filters/TopicSelector.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Head } from '@inertiajs/vue3';
 </script>
