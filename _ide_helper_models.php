@@ -35,6 +35,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUserId($value)
+ * @property string|null $pinned_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @mixin \Eloquent
  */
 	class Discussion extends \Eloquent {}
