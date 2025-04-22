@@ -10,7 +10,7 @@ defineProps<{
     <div class="my-2 block w-full rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:bg-gray-100">
         <div class="flex flex-row items-center">
             <div class="flex-1">
-                <div class="bg-primary flex w-fit items-center space-x-1 rounded-lg px-3 py-1 text-sm text-white shadow">
+                <div class="bg-primary mb-2 flex w-fit items-center space-x-1 rounded-lg px-3 py-1 text-sm text-white shadow">
                     <div>{{ discussion.topic.name }}</div>
                     <div class="" v-if="discussion.is_pinned"><Pin /></div>
                 </div>
