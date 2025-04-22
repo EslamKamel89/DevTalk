@@ -38,6 +38,7 @@ namespace App\Models{
  * @property string|null $pinned_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion orderByPinned()
  */
 	class Discussion extends \Eloquent {}
 }

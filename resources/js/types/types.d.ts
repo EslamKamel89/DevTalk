@@ -18,6 +18,7 @@ export interface Discussion {
     title: string;
     slug: string;
     pinned_at: string;
+    is_pinned: boolean;
     created_at: string;
     updated_at: string;
     topic: Topic;

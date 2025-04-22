@@ -145,6 +145,7 @@ class DatabaseSeeder extends Seeder {
                     'topic_id' => $topicModel->id,
                     'title' => $key,
                     // 'slug' => fake()->slug(),
+                    "pinned_at" => fake()->boolean(30) ?  now()->subYear()->addDays($i) : null,
                     'created_at' => now()->subYear()->addDays($i),
                     'updated_at' => now()->subYear()->addDays($i),
                 ]);

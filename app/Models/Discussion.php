@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUserId($value)
  * @property string|null $pinned_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
+ * @method static Builder<static>|Discussion orderByPinned()
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -58,5 +60,8 @@ class Discussion extends Model {
     }
     public function isPinned(): bool {
         return !is_null($this->pinned_at);
+    }
+    public function scopeOrderByPinned(Builder $query) {
+        $query->orderBy('pinned_at', 'desc');
     }
 }
