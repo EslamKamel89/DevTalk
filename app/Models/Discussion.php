@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- *
+ * 
  *
  * @property-read \App\Models\Topic|null $topic
  * @property-read \App\Models\User|null $user
@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereTopicId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion whereUserId($value)
+ * @property string|null $pinned_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -39,6 +41,7 @@ class Discussion extends Model {
         'topic_id',
         'title',
         'slug',
+        'pinned_at'
     ];
     protected static function booted(): void {
         static::created(function (Discussion $discussion) {
