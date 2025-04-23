@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\DiscussionShowController;
 use App\Http\Controllers\ForumIndexController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', ForumIndexController::class)->name('home');
-
+Route::get('/discussions/{discussion:slug}', DiscussionShowController::class)
+    ->name('discussions.show');
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
