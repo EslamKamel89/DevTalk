@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import DiscussionCard from '@/components/forum/discussions/DiscussionCard.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Discussion } from '@/types/types';
 import { Head } from '@inertiajs/vue3';
@@ -14,7 +15,7 @@ const props = defineProps<{
             <div>Side Content</div>
         </template>
         <template #header>
-            <div>Header content</div>
+            <DiscussionCard :discussion="discussion" />
         </template>
         <template #default>
             <div>
