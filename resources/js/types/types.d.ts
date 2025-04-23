@@ -27,7 +27,7 @@ export interface Discussion {
 export interface Links {
     first: string;
     last: string;
-    prev: any;
+    prev: string;
     next: string;
 }
 

@@ -21,7 +21,7 @@ const props = defineProps<{ discussions: PaginationType<Discussion> }>();
         </template>
         <div>
             <DiscussionCard v-for="discussion in discussions.data" :key="discussion.id" :discussion />
-            <PaginationComp />
+            <PaginationComp :links="discussions.meta.links" />
         </div>
     </ForumLayout>
 </template>

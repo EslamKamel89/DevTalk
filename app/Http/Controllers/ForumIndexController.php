@@ -14,7 +14,7 @@ class ForumIndexController extends Controller {
                 Discussion::with(['topic'])
                     ->orderByPinned()
                     ->latest()
-                    ->paginate(10)
+                    ->paginate(5)
             )
         ]);
     }
