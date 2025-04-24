@@ -38,10 +38,10 @@ namespace App\Models{
  * @property string|null $pinned_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Discussion wherePinnedAt($value)
  * @method static Builder<static>|Discussion orderByPinned()
- * @mixin \Eloquent
  * @property-read \App\Models\Post|null $firstPost
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
+ * @mixin \Eloquent
  */
 	class Discussion extends \Eloquent {}
 }
@@ -73,6 +73,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUserId($value)
+ * @mixin \Eloquent
  */
 	class Post extends \Eloquent {}
 }
@@ -132,9 +133,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Discussion> $discussions
  * @property-read int|null $discussions_count
- * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent {}
 }

@@ -70,7 +70,8 @@ class Discussion extends Model {
         return $this->hasMany(Post::class);
     }
     public function firstPost(): HasOne {
-        return $this->hasOne(Post::class, 'post_id');
+        return $this->hasOne(Post::class, 'post_id')
+            ->whereNull('parent_id');
     }
     public function scopeOrderByPinned(Builder $query) {
         $query->orderBy('pinned_at', 'desc');

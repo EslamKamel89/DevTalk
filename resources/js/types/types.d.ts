@@ -47,3 +47,13 @@ export interface Link {
     label: string;
     active: boolean;
 }
+
+export interface Post {
+    id: number;
+    user_id: number;
+    discussion_id: number;
+    parent_id: any;
+    body: string;
+    created_at: string;
+    user: User;
+}

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Discussion;
+use App\Models\Post;
 use App\Models\Topic;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -150,15 +151,15 @@ class DatabaseSeeder extends Seeder {
                     'updated_at' => now()->subYear()->addDays($i),
                 ]);
                 $i++;
-                // $postModel = null;
-                // foreach ($value as $key => $post) {
-                //     $postModel = Post::create([
-                //         'user_id' => $key == 0 ? $userId : User::inRandomOrder()->first()->id,
-                //         'discussion_id' => $discussion->id,
-                //         'parent_id' => $postModel?->id,
-                //         'body' => $post,
-                //     ]);
-                // }
+                $postModel = null;
+                foreach ($value as $key => $post) {
+                    $postModel = Post::create([
+                        'user_id' => $key == 0 ? $userId : User::inRandomOrder()->first()->id,
+                        'discussion_id' => $discussion->id,
+                        'parent_id' => $postModel?->id,
+                        'body' => $post,
+                    ]);
+                }
             }
 
             // collect( $this->discussionTitles[ $topic ] )->each( function ($title, $index) use ($topicModel) {
