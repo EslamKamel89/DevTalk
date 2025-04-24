@@ -1,3 +1,4 @@
+import type { User } from '@/types/index';
 export interface Topic {
     id: number;
     name: string;
