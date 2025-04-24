@@ -37,6 +37,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Discussion> $discussions
  * @property-read int|null $discussions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
+ * @property-read int|null $posts_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable {
@@ -78,5 +80,8 @@ class User extends Authenticatable {
     }
     public function discussions(): HasMany {
         return $this->hasMany(Discussion::class);
+    }
+    public function posts(): HasMany {
+        return $this->hasMany(Post::class);
     }
 }
