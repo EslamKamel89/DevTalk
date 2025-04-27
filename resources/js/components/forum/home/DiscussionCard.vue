@@ -28,7 +28,7 @@ defineProps<{
                 >{{ discussion.first_post?.body }}</Link
             >
             <div class="flex w-full justify-end">
-                <div v-if="discussion.latest_post">
+                <div v-if="discussion.latest_post" class="text-sm text-gray-600" :title="discussion.latest_post.created_at.raw">
                     {{ `Last Post by ${discussion.latest_post?.user.name} from ${discussion.latest_post?.created_at.friendly}` }}
                 </div>
             </div>

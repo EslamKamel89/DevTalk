@@ -26,7 +26,7 @@ onUnmounted(() => {
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <img class="h-8 w-8 rounded-full" :src="post.user.avatar" alt="user image" />
                 <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ post.user.name }}</span>
-                <span class="text-xs font-normal text-gray-500 dark:text-gray-300">{{ post.created_at.friendly }}</span>
+                <span class="text-xs font-normal text-gray-500 dark:text-gray-300" :title="post.created_at.raw">{{ post.created_at.friendly }}</span>
             </div>
             <p class="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
                 {{ post.body }}
