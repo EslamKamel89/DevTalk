@@ -55,6 +55,10 @@ export interface Post {
     discussion_id: number;
     parent_id: any;
     body: string;
-    created_at: string;
+    created_at: DateTimeType;
     user: User;
+}
+export interface DateTimeType {
+    friendly: string;
+    raw: string;
 }

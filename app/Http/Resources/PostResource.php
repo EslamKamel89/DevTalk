@@ -18,7 +18,7 @@ class PostResource extends JsonResource {
             'discussion_id' => $this->discussion_id,
             'parent_id' => $this->parent_id,
             'body' => $this->body,
-            'created_at' => $this->created_at->diffForHumans(),
+            'created_at' => DateTimeResource::make($this->created_at),
             'user' => UserResource::make($this->whenLoaded('user')),
             'discussion' => DiscussionResource::make($this->whenLoaded('discussion')),
         ];
