@@ -73,6 +73,10 @@ class Discussion extends Model {
         return $this->hasOne(Post::class, 'discussion_id')
             ->whereNull('parent_id');
     }
+    public function latestPost(): HasOne {
+        return $this->hasOne(Post::class, 'discussion_id')
+            ->latestOfMany();
+    }
     public function scopeOrderByPinned(Builder $query) {
         $query->orderBy('pinned_at', 'desc');
     }

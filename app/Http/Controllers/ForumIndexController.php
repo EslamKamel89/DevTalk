@@ -11,7 +11,7 @@ class ForumIndexController extends Controller {
 
         return inertia('forum/Index', [
             'discussions' => DiscussionResource::collection(
-                Discussion::with(['topic', 'firstPost'])
+                Discussion::with(['topic', 'firstPost', 'latestPost.user'])
                     ->orderByPinned()
                     ->latest()
                     ->paginate(5)

@@ -24,6 +24,7 @@ export interface Discussion {
     updated_at: string;
     topic: Topic;
     first_post?: Post;
+    latest_post?: Post;
 }
 
 export interface Links {

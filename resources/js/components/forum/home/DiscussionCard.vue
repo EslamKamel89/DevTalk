@@ -22,7 +22,16 @@ defineProps<{
                 </div>
                 <div>Avatars</div>
             </div>
-            <p class="line-clamp-1 text-sm font-normal text-gray-700">{{ discussion.first_post?.body }}</p>
+            <Link
+                :href="route('discussions.show', discussion.slug)"
+                class="line-clamp-1 cursor-pointer rounded-xl px-2 py-1 text-sm font-normal text-gray-700 hover:bg-white hover:text-black"
+                >{{ discussion.first_post?.body }}</Link
+            >
+            <div class="flex w-full justify-end">
+                <div v-if="discussion.latest_post">
+                    {{ `Last Post by ${discussion.latest_post?.user.name} from ${discussion.latest_post?.created_at.friendly}` }}
+                </div>
+            </div>
         </div>
     </Link>
 </template>
