@@ -23,6 +23,7 @@ export interface Discussion {
     created_at: string;
     updated_at: string;
     topic: Topic;
+    first_post?: Post;
 }
 
 export interface Links {

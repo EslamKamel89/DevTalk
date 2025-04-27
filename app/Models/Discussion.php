@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * 
+ *
  *
  * @property-read \App\Models\Topic|null $topic
  * @property-read \App\Models\User|null $user
@@ -70,7 +70,7 @@ class Discussion extends Model {
         return $this->hasMany(Post::class);
     }
     public function firstPost(): HasOne {
-        return $this->hasOne(Post::class, 'post_id')
+        return $this->hasOne(Post::class, 'discussion_id')
             ->whereNull('parent_id');
     }
     public function scopeOrderByPinned(Builder $query) {

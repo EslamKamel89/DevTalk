@@ -22,7 +22,7 @@ defineProps<{
                 </div>
                 <div>Avatars</div>
             </div>
-            <p class="font-normal text-gray-700">This is the first post in the discussion</p>
+            <p class="line-clamp-1 text-sm font-normal text-gray-700">{{ discussion.first_post?.body }}</p>
         </div>
     </Link>
 </template>
