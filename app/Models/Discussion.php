@@ -40,6 +40,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read \App\Models\Post|null $firstPost
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
+ * @property-read \App\Models\Post|null $latestPost
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $particpants
+ * @property-read int|null $particpants_count
+ * @method static Builder<static>|Discussion orderByLastPost()
  * @mixin \Eloquent
  */
 class Discussion extends Model {
@@ -81,6 +85,10 @@ class Discussion extends Model {
     }
     public function scopeOrderByPinned(Builder $query) {
         $query->orderBy('pinned_at', 'desc');
+    }
+    public function scopeOrderByLastPost(Builder $query) {
+        return $query->withMax('posts', 'created_at')
+            ->orderByDesc('posts_max_created_at');
     }
     public function particpants(): BelongsToMany {
         return $this->belongsToMany(

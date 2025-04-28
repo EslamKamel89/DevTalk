@@ -41,10 +41,11 @@ namespace App\Models{
  * @property-read \App\Models\Post|null $firstPost
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
  * @property-read int|null $posts_count
- * @mixin \Eloquent
  * @property-read \App\Models\Post|null $latestPost
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $particpants
  * @property-read int|null $particpants_count
+ * @method static Builder<static>|Discussion orderByLastPost()
+ * @mixin \Eloquent
  */
 	class Discussion extends \Eloquent {}
 }
