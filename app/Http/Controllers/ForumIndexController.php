@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class ForumIndexController extends Controller {
     public function __invoke(Request $request) {
-
+        // $discussions =
         return inertia('forum/Index', [
             'discussions' => DiscussionResource::collection(
-                Discussion::with(['topic', 'firstPost', 'latestPost.user'])
+                Discussion::with(['topic', 'firstPost', 'latestPost.user', 'particpants'])
                     ->orderByPinned()
                     ->latest()
                     ->paginate(5)

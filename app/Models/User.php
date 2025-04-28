@@ -87,4 +87,7 @@ class User extends Authenticatable {
     public function avatarUrl(): string {
         return "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={$this->username}";
     }
+    public static function avatar(string $username): string {
+        return "https://ui-avatars.com/api/?background=0D8ABC&color=fff&name={$username}";
+    }
 }

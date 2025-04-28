@@ -25,6 +25,7 @@ export interface Discussion {
     topic: Topic;
     first_post?: Post;
     latest_post?: Post;
+    particpants?: User[];
 }
 
 export interface Links {

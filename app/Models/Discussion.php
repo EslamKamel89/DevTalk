@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -79,5 +81,14 @@ class Discussion extends Model {
     }
     public function scopeOrderByPinned(Builder $query) {
         $query->orderBy('pinned_at', 'desc');
+    }
+    public function particpants(): BelongsToMany {
+        return $this->belongsToMany(
+            User::class,
+            'posts',
+            'discussion_id',
+            'user_id'
+        )->distinct();
+        // ->limit(3);
     }
 }
