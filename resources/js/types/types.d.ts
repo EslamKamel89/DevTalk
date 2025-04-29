@@ -20,6 +20,7 @@ export interface Discussion {
     slug: string;
     pinned_at: string;
     is_pinned: boolean;
+    replies_count: number;
     created_at: string;
     updated_at: string;
     topic: Topic;

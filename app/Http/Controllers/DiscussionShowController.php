@@ -13,7 +13,8 @@ class DiscussionShowController extends Controller {
      * Handle the incoming request.
      */
     public function __invoke(Request $request, Discussion $discussion) {
-        $discussion->load(['topic', 'particpants']);
+        $discussion->load(['topic', 'particpants'])
+            ->loadCount(['posts']);
         $posts = Post::where('discussion_id', $discussion->id)
             ->with(['user', 'discussion',])
             ->oldest()

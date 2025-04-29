@@ -28,11 +28,16 @@ const props = defineProps<{
                 class="line-clamp-1 cursor-pointer rounded-xl px-2 py-1 text-sm font-normal text-gray-700 hover:bg-white hover:text-black"
                 >{{ discussion.first_post?.body }}</Link
             >
-            <div class="flex w-full justify-end">
-                <div v-if="discussion.latest_post" class="text-sm text-gray-600" :title="discussion.latest_post.created_at?.raw">
-                    {{
-                        `Last Post by ${discussion.latest_post?.user?.name ?? '[User Deleted]'} from ${discussion.latest_post?.created_at?.friendly}`
-                    }}
+            <div class="flex w-full justify-end text-xs text-gray-600">
+                <div>
+                    <span v-if="discussion.latest_post" class="" :title="discussion.latest_post.created_at?.raw">
+                        {{
+                            `Last Post by ${discussion.latest_post?.user?.name ?? '[User Deleted]'} from ${discussion.latest_post?.created_at?.friendly}`
+                        }}
+                    </span>
+                    <span v-if="discussion.replies_count">
+                        - {{ `${discussion.replies_count} ${discussion.replies_count > 1 ? 'replies' : 'reply'}` }}</span
+                    >
                 </div>
             </div>
         </div>

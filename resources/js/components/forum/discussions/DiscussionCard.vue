@@ -19,6 +19,9 @@ defineProps<{
                     </div>
                     <h5 class="text-xl font-bold tracking-tight text-gray-900">
                         {{ discussion.title }}
+                        <span class="text-sm font-thin" v-if="discussion.replies_count">
+                            ( {{ `${discussion.replies_count} ${discussion.replies_count > 1 ? 'replies' : 'reply'}` }} )</span
+                        >
                     </h5>
                 </div>
                 <Avatars :users="discussion.particpants ?? []" />

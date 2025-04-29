@@ -22,6 +22,7 @@ class DiscussionResource extends JsonResource {
             'updated_at' => $this->updated_at,
             'pinned_at' => $this->pinned_at,
             'is_pinned' => $this->isPinned(),
+            'replies_count' => $this->posts_count - 1,
             'user' => UserResource::make($this->whenLoaded('user')),
             'topic' => TopicResource::make($this->whenLoaded('topic')),
             'first_post' => PostResource::make($this->whenLoaded('firstPost')),
