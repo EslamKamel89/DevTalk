@@ -24,8 +24,13 @@ onUnmounted(() => {
     <div class="relative flex items-start gap-2.5">
         <div class="flex w-full flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-100 p-4 leading-1.5 dark:bg-gray-700">
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                <img class="h-8 w-8 rounded-full" :src="post.user.avatar" alt="user image" />
-                <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ post.user.name }}</span>
+                <template v-if="post.user">
+                    <img class="h-8 w-8 rounded-full" :src="post.user.avatar" alt="user image" />
+                    <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ post.user.name }}</span>
+                </template>
+                <template v-else>
+                    <span class="text-sm font-semibold text-gray-900 dark:text-white">[User Deleted]</span>
+                </template>
                 <span class="text-xs font-normal text-gray-500 dark:text-gray-300" :title="post.created_at?.raw">{{ post.created_at.friendly }}</span>
             </div>
             <p class="py-2.5 text-sm font-normal text-gray-900 dark:text-white">

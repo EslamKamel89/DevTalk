@@ -13,9 +13,9 @@ class DiscussionShowController extends Controller {
      * Handle the incoming request.
      */
     public function __invoke(Request $request, Discussion $discussion) {
-        $discussion->load(['topic']);
+        $discussion->load(['topic', 'particpants']);
         $posts = Post::where('discussion_id', $discussion->id)
-            ->with(['user', 'discussion'])
+            ->with(['user', 'discussion',])
             ->oldest()
             ->paginate(10);
         return inertia('forum/discussions/Show', [

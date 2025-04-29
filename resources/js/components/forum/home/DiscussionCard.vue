@@ -1,15 +1,12 @@
 <script setup lang="ts">
+import Avatars from '@/components/shared/avatars.vue';
 import { Discussion } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
 import { Pin } from 'lucide-vue-next';
-import { computed } from 'vue';
 
 const props = defineProps<{
     discussion: Discussion;
 }>();
-const particpants = computed(() => {
-    return [...(props.discussion.particpants ?? [])].slice(0, 3);
-});
 </script>
 <template>
     <Link :href="route('discussions.show', discussion.slug)">
@@ -24,23 +21,7 @@ const particpants = computed(() => {
                         {{ discussion.title }}
                     </h5>
                 </div>
-                <div class="mx-2 flex flex-col items-end">
-                    <div class="flex items-center -space-x-3">
-                        <div v-for="(user, index) in particpants" :key="user.id">
-                            <img
-                                :src="user.avatar"
-                                :alt="user.username"
-                                class="h-10 w-10 rounded-full border-2 border-white"
-                                :class="{
-                                    '!h-12 !w-12': index == 0,
-                                }"
-                            />
-                        </div>
-                    </div>
-                    <div v-if="discussion.particpants?.length && discussion.particpants?.length > 3" class="text-xs text-gray-500">
-                        And {{ discussion.particpants.length - particpants.length }} more
-                    </div>
-                </div>
+                <Avatars :users="discussion.particpants ?? []" />
             </div>
             <Link
                 :href="route('discussions.show', discussion.slug)"
@@ -49,7 +30,9 @@ const particpants = computed(() => {
             >
             <div class="flex w-full justify-end">
                 <div v-if="discussion.latest_post" class="text-sm text-gray-600" :title="discussion.latest_post.created_at?.raw">
-                    {{ `Last Post by ${discussion.latest_post?.user.name} from ${discussion.latest_post?.created_at?.friendly}` }}
+                    {{
+                        `Last Post by ${discussion.latest_post?.user?.name ?? '[User Deleted]'} from ${discussion.latest_post?.created_at?.friendly}`
+                    }}
                 </div>
             </div>
         </div>

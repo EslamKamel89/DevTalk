@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Avatars from '@/components/shared/avatars.vue';
 import { Discussion } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
 import { Pin } from 'lucide-vue-next';
@@ -20,7 +21,7 @@ defineProps<{
                         {{ discussion.title }}
                     </h5>
                 </div>
-                <div>Avatars</div>
+                <Avatars :users="discussion.particpants ?? []" />
             </div>
         </div>
     </Link>
