@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DiscussionCard from '@/components/forum/discussions/DiscussionCard.vue';
 import PostCard from '@/components/forum/discussions/PostCard.vue';
+import Navigation from '@/components/shared/Navigation.vue';
 import PaginationComp from '@/components/shared/PaginationComp.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Discussion, PaginationType, Post } from '@/types/types';
@@ -15,7 +16,7 @@ const props = defineProps<{
     <Head :title="discussion.title" />
     <ForumLayout>
         <template #side>
-            <div>Side Content</div>
+            <Navigation />
         </template>
         <template #header>
             <DiscussionCard :discussion="discussion" />

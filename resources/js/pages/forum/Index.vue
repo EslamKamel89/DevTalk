@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DiscussionCard from '@/components/forum/home/DiscussionCard.vue';
 import TopicSelector from '@/components/forum/home/filters/TopicSelector.vue';
+import Navigation from '@/components/shared/Navigation.vue';
 import PaginationComp from '@/components/shared/PaginationComp.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Discussion, PaginationType } from '@/types/types';
@@ -14,7 +15,7 @@ const props = defineProps<{ discussions: PaginationType<Discussion> }>();
 
     <ForumLayout>
         <template #side>
-            <div>Side content</div>
+            <Navigation />
         </template>
         <template #header>
             <TopicSelector />

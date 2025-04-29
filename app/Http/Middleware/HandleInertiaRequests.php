@@ -41,6 +41,7 @@ class HandleInertiaRequests extends Middleware {
         return [
             ...parent::share($request),
             'name' => config('app.name'),
+            'query' => request()->all(),
             "topics" => TopicResource::collection(Topic::all()),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [

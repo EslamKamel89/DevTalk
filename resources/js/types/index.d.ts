@@ -21,6 +21,7 @@ export interface NavItem {
 
 export interface SharedData extends PageProps {
     name: string;
+    query: Record<string, any>;
     topics: Topic[];
     quote: { message: string; author: string };
     auth: Auth;
