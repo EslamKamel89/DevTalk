@@ -5,6 +5,9 @@ import { computed } from 'vue';
 import Button from '../ui/button/Button.vue';
 const page = usePage<SharedData>();
 const url = computed(() => page.url.split('?')[0]);
+const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' => {
+    return cond ? 'secondary' : 'ghost';
+};
 </script>
 <template>
     <div class="mx-4">
@@ -12,12 +15,12 @@ const url = computed(() => page.url.split('?')[0]);
             <ul class="space-y-2">
                 <li>
                     <Link href="/">
-                        <Button :variant="page.url == '/' ? 'secondary' : 'ghost'"> All Discussions </Button>
+                        <Button :variant="btnVariant(page.url == '/')"> All Discussions </Button>
                     </Link>
                 </li>
                 <li>
                     <Link href="/?no-replies=1">
-                        <Button :variant="page.props.query['no-replies'] == 1 && url == '/' ? 'secondary' : 'ghost'"> No Replies </Button>
+                        <Button :variant="btnVariant(page.props.query['no-replies'] == 1 && url == '/')"> No Replies </Button>
                     </Link>
                 </li>
             </ul>
