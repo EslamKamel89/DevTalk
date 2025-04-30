@@ -2,22 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\NoReplyFilter;
+use App\Http\Filters\PopularFilter;
 use App\Http\Resources\DiscussionResource;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ForumIndexController extends Controller {
     public function __invoke(Request $request) {
         // $discussions =
         return inertia('forum/Index', [
             'discussions' => DiscussionResource::collection(
-                Discussion::with(['topic', 'firstPost', 'latestPost.user', 'particpants'])
+                QueryBuilder::for(Discussion::class)
+                    ->with(['topic', 'firstPost', 'latestPost.user', 'particpants'])
                     ->withCount('posts')
                     ->orderByLastPost()
                     ->orderByPinned()
                     ->latest()
+                    ->allowedFilters($this->allowedFilters())
                     ->paginate(5)
             )
         ]);
+    }
+    protected function allowedFilters(): array {
+        return [
+            AllowedFilter::custom('no-replies', new NoReplyFilter()),
+            AllowedFilter::custom('popular', new PopularFilter()),
+        ];
     }
 }

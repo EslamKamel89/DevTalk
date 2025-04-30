@@ -21,7 +21,12 @@ const props = defineProps<{ discussions: PaginationType<Discussion> }>();
             <TopicSelector />
         </template>
         <div>
-            <DiscussionCard v-for="discussion in discussions.data" :key="discussion.id" :discussion />
+            <template v-if="discussions.data.length">
+                <DiscussionCard v-for="discussion in discussions.data" :key="discussion.id" :discussion />
+            </template>
+            <template v-else>
+                <div class="mt-5 w-full text-center text-sm font-thin text-gray-500">No Results Found</div>
+            </template>
             <PaginationComp :links="discussions.meta.links" />
         </div>
     </ForumLayout>

@@ -19,8 +19,13 @@ const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'sec
                     </Link>
                 </li>
                 <li>
-                    <Link href="/?no-replies=1">
-                        <Button :variant="btnVariant(page.props.query['no-replies'] == 1 && url == '/')"> No Replies </Button>
+                    <Link href="/?filter[popular]=10">
+                        <Button :variant="btnVariant(page.props.query.filter['popular'] == 10 && url == '/')"> Popular </Button>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/?filter[no-replies]=1">
+                        <Button :variant="btnVariant(page.props.query.filter['no-replies'] == 1 && url == '/')"> No Replies </Button>
                     </Link>
                 </li>
             </ul>
