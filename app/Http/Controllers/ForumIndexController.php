@@ -28,7 +28,7 @@ class ForumIndexController extends Controller {
     }
     protected function allowedFilters(): array {
         return [
-            AllowedFilter::custom('no-replies', new NoReplyFilter()),
+            AllowedFilter::custom('noreplies', new NoReplyFilter()),
             AllowedFilter::custom('popular', new PopularFilter()),
         ];
     }
