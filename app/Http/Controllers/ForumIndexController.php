@@ -23,6 +23,7 @@ class ForumIndexController extends Controller {
                     ->latest()
                     ->allowedFilters($this->allowedFilters())
                     ->paginate(5)
+                    ->withQueryString()
             )
         ]);
     }
