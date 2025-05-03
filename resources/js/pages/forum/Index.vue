@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import DiscussionCard from '@/components/forum/home/DiscussionCard.vue';
 import TopicSelector from '@/components/forum/home/filters/TopicSelector.vue';
+import MobileNavigation from '@/components/shared/MobileNavigation.vue';
 import Navigation from '@/components/shared/Navigation.vue';
 import PaginationComp from '@/components/shared/PaginationComp.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Discussion, PaginationType } from '@/types/types';
 import { Head } from '@inertiajs/vue3';
+import { useWindowSize } from '@vueuse/core';
 
 const props = defineProps<{ discussions: PaginationType<Discussion> }>();
+const { width, height } = useWindowSize();
 </script>
 
 <template>
@@ -15,7 +18,10 @@ const props = defineProps<{ discussions: PaginationType<Discussion> }>();
 
     <ForumLayout>
         <template #side>
-            <Navigation />
+            <Navigation v-if="width >= 768" />
+            <template v-else>
+                <MobileNavigation />
+            </template>
         </template>
         <template #header>
             <TopicSelector />

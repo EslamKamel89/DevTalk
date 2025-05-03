@@ -15,17 +15,17 @@ const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'sec
         <nav>
             <ul class="space-y-2">
                 <li>
-                    <Link href="/">
+                    <Link href="/" :preserve-state="true">
                         <Button :variant="btnVariant(page.url == '/')"> All Discussions </Button>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/?filter[popular]=10">
+                    <Link href="/?filter[popular]=10" :preserve-state="true">
                         <Button :variant="btnVariant(page.props.query.filter?.popular == 10 && url == '/')"> Popular </Button>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/?filter[noreplies]=1">
+                    <Link href="/?filter[noreplies]=1" :preserve-state="true">
                         <Button :variant="btnVariant(page.props.query?.filter?.noreplies == 1 && url == '/')"> No Replies </Button>
                     </Link>
                 </li>
@@ -34,12 +34,12 @@ const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'sec
                         <Separator />
                     </li>
                     <li>
-                        <Link href="/?filter[mine]=1">
+                        <Link href="/?filter[mine]=1" :preserve-state="true">
                             <Button :variant="btnVariant(page.props.query?.filter?.mine == 1 && url == '/')"> My Discussions </Button>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/?filter[participating]=1">
+                        <Link href="/?filter[participating]=1" :preserve-state="true">
                             <Button :variant="btnVariant(page.props.query?.filter?.participating == 1 && url == '/')"> Participating </Button>
                         </Link>
                     </li>
