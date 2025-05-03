@@ -9,23 +9,26 @@ const url = computed(() => page.url.split('?')[0]);
 const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' => {
     return cond ? 'secondary' : 'ghost';
 };
+const emit = defineEmits<{
+    filterSelected: [filter: string];
+}>();
 </script>
 <template>
     <div class="mx-4">
         <nav>
             <ul class="space-y-2">
                 <li>
-                    <Link href="/" :preserve-state="true">
+                    <Link href="/" :preserve-state="true" @click="emit('filterSelected', '')">
                         <Button :variant="btnVariant(page.url == '/')"> All Discussions </Button>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/?filter[popular]=10" :preserve-state="true">
+                    <Link href="/?filter[popular]=10" :preserve-state="true" @click="emit('filterSelected', 'Popular')">
                         <Button :variant="btnVariant(page.props.query.filter?.popular == 10 && url == '/')"> Popular </Button>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/?filter[noreplies]=1" :preserve-state="true">
+                    <Link href="/?filter[noreplies]=1" :preserve-state="true" @click="emit('filterSelected', 'No Replies')">
                         <Button :variant="btnVariant(page.props.query?.filter?.noreplies == 1 && url == '/')"> No Replies </Button>
                     </Link>
                 </li>
@@ -34,12 +37,12 @@ const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'sec
                         <Separator />
                     </li>
                     <li>
-                        <Link href="/?filter[mine]=1" :preserve-state="true">
+                        <Link href="/?filter[mine]=1" :preserve-state="true" @click="emit('filterSelected', 'My Discussions')">
                             <Button :variant="btnVariant(page.props.query?.filter?.mine == 1 && url == '/')"> My Discussions </Button>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/?filter[participating]=1" :preserve-state="true">
+                        <Link href="/?filter[participating]=1" :preserve-state="true" @click="emit('filterSelected', 'Participating')">
                             <Button :variant="btnVariant(page.props.query?.filter?.participating == 1 && url == '/')"> Participating </Button>
                         </Link>
                     </li>
