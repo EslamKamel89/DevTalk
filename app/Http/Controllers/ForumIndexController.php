@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Filters\MineFilter;
 use App\Http\Filters\NoReplyFilter;
+use App\Http\Filters\ParticipatingFilter;
 use App\Http\Filters\PopularFilter;
 use App\Http\Resources\DiscussionResource;
 use App\Models\Discussion;
@@ -32,7 +33,8 @@ class ForumIndexController extends Controller {
         return [
             AllowedFilter::custom('noreplies', new NoReplyFilter()),
             AllowedFilter::custom('popular', new PopularFilter()),
-            AllowedFilter::custom('mine', new MineFilter())
+            AllowedFilter::custom('mine', new MineFilter()),
+            AllowedFilter::custom('participating', new ParticipatingFilter())
         ];
     }
 }

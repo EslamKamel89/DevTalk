@@ -38,6 +38,11 @@ const btnVariant = (cond: boolean): 'default' | 'destructive' | 'outline' | 'sec
                             <Button :variant="btnVariant(page.props.query?.filter?.mine == 1 && url == '/')"> My Discussions </Button>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/?filter[participating]=1">
+                            <Button :variant="btnVariant(page.props.query?.filter?.participating == 1 && url == '/')"> Participating </Button>
+                        </Link>
+                    </li>
                 </template>
             </ul>
         </nav>
