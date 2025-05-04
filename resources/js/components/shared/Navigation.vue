@@ -23,7 +23,7 @@ const emit = defineEmits<{
                     </Link>
                 </li>
                 <li>
-                    <Link href="/?filter[popular]=10" :preserve-state="true" @click="emit('filterSelected', 'Popular')">
+                    <Link href="/?filter[popular]=10" :data="{}" :preserve-state="true" @click="emit('filterSelected', 'Popular')">
                         <Button :variant="btnVariant(page.props.query.filter?.popular == 10 && url == '/')"> Popular </Button>
                     </Link>
                 </li>

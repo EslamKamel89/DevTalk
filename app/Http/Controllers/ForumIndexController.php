@@ -34,7 +34,9 @@ class ForumIndexController extends Controller {
             AllowedFilter::custom('noreplies', new NoReplyFilter()),
             AllowedFilter::custom('popular', new PopularFilter()),
             AllowedFilter::custom('mine', new MineFilter()),
-            AllowedFilter::custom('participating', new ParticipatingFilter())
+            AllowedFilter::custom('participating', new ParticipatingFilter()),
+            AllowedFilter::exact('topic', 'topic_id')
+
         ];
     }
 }
