@@ -8,6 +8,7 @@ import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Discussion, PaginationType } from '@/types/types';
 import { Head } from '@inertiajs/vue3';
 import { useWindowSize } from '@vueuse/core';
+import CreateDiscussion from '../../components/forum/discussions/CreateDiscussion.vue';
 
 const props = defineProps<{ discussions: PaginationType<Discussion> }>();
 const { width, height } = useWindowSize();
@@ -18,6 +19,7 @@ const { width, height } = useWindowSize();
 
     <ForumLayout>
         <template #side>
+            <CreateDiscussion />
             <Navigation v-if="width >= 768" />
             <template v-else>
                 <MobileNavigation />
