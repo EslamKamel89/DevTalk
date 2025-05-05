@@ -12,16 +12,19 @@ import {
 } from '@/components/ui/drawer';
 import Separator from '@/components/ui/separator/Separator.vue';
 // import { VisStackedBar, VisXYContainer } from '@unovis/vue';
+import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
 import { MessageSquareCode } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
+import TopicSelector from './TopicSelector.vue';
+const { isOpen, btnTitle } = useCreateDiscussion();
 </script>
 
 <template>
-    <Drawer>
+    <Drawer v-model:open="isOpen">
         <DrawerTrigger as-child>
             <div class="flex w-full justify-center pt-4">
                 <div class="w-full">
-                    <Button variant="default" class="w-full"> Create Discussion <MessageSquareCode /></Button>
+                    <Button variant="default" class="w-full"> {{ btnTitle }} <MessageSquareCode /></Button>
                     <Separator class="my-4 bg-black" />
                 </div>
             </div>
@@ -36,7 +39,11 @@ import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
                         </DrawerDescription>
                     </DrawerHeader>
                 </div>
-                <div class="px-2">Hello world</div>
+                <div class="px-2">
+                    <div class="flex space-x-2">
+                        <TopicSelector />
+                    </div>
+                </div>
                 <DrawerFooter>
                     <div class="flex space-x-2">
                         <DrawerClose as-child>

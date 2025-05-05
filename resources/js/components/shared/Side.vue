@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useWindowSize } from '@vueuse/core';
-import CreateDiscussion from '../forum/discussions/CreateDiscussion.vue';
+import CreateDiscussion from '../forum/discussions/CreateDiscussion/CreateDiscussion.vue';
 import MobileNavigation from './MobileNavigation.vue';
 import Navigation from './Navigation.vue';
 
