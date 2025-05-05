@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import DiscussionCard from '@/components/forum/discussions/DiscussionCard.vue';
 import PostCard from '@/components/forum/discussions/PostCard.vue';
-import Navigation from '@/components/shared/Navigation.vue';
 import PaginationComp from '@/components/shared/PaginationComp.vue';
+import Side from '@/components/shared/Side.vue';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { Discussion, PaginationType, Post } from '@/types/types';
 import { Head } from '@inertiajs/vue3';
@@ -16,7 +16,7 @@ const props = defineProps<{
     <Head :title="discussion.title" />
     <ForumLayout>
         <template #side>
-            <Navigation />
+            <Side />
         </template>
         <template #header>
             <DiscussionCard :discussion="discussion" />
