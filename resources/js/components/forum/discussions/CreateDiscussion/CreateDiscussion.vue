@@ -16,7 +16,7 @@ import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
 import { MessageSquareCode } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
 import TopicSelector from './TopicSelector.vue';
-const { isOpen, btnTitle } = useCreateDiscussion();
+const { isOpen, btnTitle, title, post } = useCreateDiscussion();
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const { isOpen, btnTitle } = useCreateDiscussion();
             </div>
         </DrawerTrigger>
         <DrawerContent>
-            <div class="mx-auto w-full max-w-2xl">
+            <div class="mx-auto w-full max-w-2xl overflow-auto">
                 <div class="px-2">
                     <DrawerHeader>
                         <DrawerTitle>Create Discussion</DrawerTitle>
@@ -41,8 +41,10 @@ const { isOpen, btnTitle } = useCreateDiscussion();
                 </div>
                 <div class="px-2">
                     <div class="flex space-x-2">
+                        <input type="text" v-model="title" placeholder="Discussion Title" class="w-full rounded-lg border px-4" />
                         <TopicSelector />
                     </div>
+                    <textarea v-model="post" class="mt-2 w-full rounded-lg border px-4 py-2" rows="3" placeholder="Post Content"></textarea>
                 </div>
                 <DrawerFooter>
                     <div class="flex space-x-2">
