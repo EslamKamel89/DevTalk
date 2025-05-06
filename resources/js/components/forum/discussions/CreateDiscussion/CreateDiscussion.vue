@@ -13,10 +13,10 @@ import {
 import Separator from '@/components/ui/separator/Separator.vue';
 // import { VisStackedBar, VisXYContainer } from '@unovis/vue';
 import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
-import { MessageSquareCode } from 'lucide-vue-next';
+import { MessageSquareCode, X } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
 import TopicSelector from './TopicSelector.vue';
-const { isOpen, btnTitle, title, post } = useCreateDiscussion();
+const { isOpen, btnTitle, title, post, hideDrawer } = useCreateDiscussion();
 </script>
 
 <template>
@@ -33,7 +33,15 @@ const { isOpen, btnTitle, title, post } = useCreateDiscussion();
             <div class="mx-auto w-full max-w-2xl overflow-auto">
                 <div class="px-2">
                     <DrawerHeader>
-                        <DrawerTitle>Create Discussion</DrawerTitle>
+                        <DrawerTitle>
+                            <div class="flex w-full justify-between">
+                                <div>Create Discussion</div>
+                                <X
+                                    @click="hideDrawer"
+                                    class="h-9 w-9 cursor-pointer rounded-full border px-2 py-1 shadow hover:scale-110 hover:shadow-lg"
+                                />
+                            </div>
+                        </DrawerTitle>
                         <DrawerDescription>
                             <CreateDiscussionHeader />
                         </DrawerDescription>

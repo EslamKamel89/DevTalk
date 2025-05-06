@@ -10,8 +10,11 @@ const post = ref<string | null>(null);
 const topics = computed(() => page.props.topics);
 const selectedTopic = ref<number>();
 const btnTitle = computed(() => {
-    return title.value ? 'Finish & Share' : 'Create Discussion';
+    return title.value || post.value ? 'Finish & Share' : 'Create Discussion';
 });
 export const useCreateDiscussion = () => {
-    return { isOpen, btnTitle, topics, selectedTopic, title, post };
+    const hideDrawer = () => {
+        isOpen.value = false;
+    };
+    return { isOpen, btnTitle, topics, selectedTopic, title, post, hideDrawer };
 };
