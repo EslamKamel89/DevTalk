@@ -16,7 +16,7 @@ import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
 import TopicSelector from './TopicSelector.vue';
-const { isOpen, btnTitle, title, body, hideDrawer } = useCreateDiscussion();
+const { isOpen, btnTitle, title, body, hideDrawer, createDiscussion } = useCreateDiscussion();
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const { isOpen, btnTitle, title, body, hideDrawer } = useCreateDiscussion();
             </div>
         </DrawerTrigger>
         <DrawerContent>
-            <div class="mx-auto w-full max-w-2xl overflow-auto">
+            <form class="mx-auto w-full max-w-2xl overflow-auto" @submit.prevent="createDiscussion">
                 <div class="px-2">
                     <DrawerHeader>
                         <DrawerTitle>
@@ -57,12 +57,12 @@ const { isOpen, btnTitle, title, body, hideDrawer } = useCreateDiscussion();
                 <DrawerFooter>
                     <div class="flex space-x-2">
                         <DrawerClose as-child>
-                            <Button variant="outline"> Cancel </Button>
+                            <Button variant="outline" type="button"> Cancel </Button>
                         </DrawerClose>
-                        <Button>Submit</Button>
+                        <Button type="submit">Create</Button>
                     </div>
                 </DrawerFooter>
-            </div>
+            </form>
         </DrawerContent>
     </Drawer>
 </template>
