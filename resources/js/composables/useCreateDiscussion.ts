@@ -16,5 +16,7 @@ export const useCreateDiscussion = () => {
     const hideDrawer = () => {
         isOpen.value = false;
     };
-    return { isOpen, btnTitle, topics, selectedTopic, title, body, hideDrawer };
+    const createDiscussion = async () => {};
+
+    return { isOpen, btnTitle, topics, selectedTopic, title, body, hideDrawer, createDiscussion };
 };
