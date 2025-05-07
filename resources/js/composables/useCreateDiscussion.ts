@@ -1,38 +1,30 @@
 import { SharedData } from '@/types';
-import { router, usePage } from '@inertiajs/vue3';
-import { computed, ref } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
+import { computed, ref, watch } from 'vue';
 const page = usePage<SharedData>();
-
+const form = useForm({
+    title: null as string | null,
+    body: null as string | null,
+    topic_id: null as number | null,
+});
 const isOpen = ref(false);
-const title = ref<string | null>(null);
-const body = ref<string | null>(null);
 // const btnTitle = ref<string>('Create Discussion'); // Finish & Share
 const topics = computed(() => page.props.topics);
-const selectedTopic = ref<number | null>(null);
 const btnTitle = computed(() => {
-    return title.value || body.value ? 'Finish & Share' : 'Create Discussion';
+    return form?.title || form?.body ? 'Finish & Share' : 'Create Discussion';
 });
 const hideDrawer = () => {
     isOpen.value = false;
 };
 const createDiscussion = () => {
-    router.post(
-        route('discussions.store'),
-        {
-            title: title.value,
-            body: body.value,
-            topic_id: selectedTopic.value,
+    form.post(route('discussions.store'), {
+        onSuccess: () => {
+            form.reset();
+            hideDrawer();
         },
-        {
-            onSuccess: () => {
-                isOpen.value = false;
-                title.value = null;
-                body.value = null;
-                selectedTopic.value = null;
-            },
-        },
-    );
+    });
 };
+watch(form, () => {});
 export const useCreateDiscussion = () => {
-    return { isOpen, btnTitle, topics, selectedTopic, title, body, hideDrawer, createDiscussion };
+    return { isOpen, btnTitle, topics, form, hideDrawer, createDiscussion };
 };

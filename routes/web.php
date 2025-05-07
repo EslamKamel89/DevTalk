@@ -9,8 +9,10 @@ use Inertia\Inertia;
 Route::get('/', ForumIndexController::class)->name('home');
 Route::get('/discussions/{discussion:slug}', DiscussionShowController::class)
     ->name('discussions.show');
-Route::post('/discussions', DiscussionStoreController::class)
-    ->name('discussions.store');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/discussions', DiscussionStoreController::class)
+        ->name('discussions.store');
+});
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

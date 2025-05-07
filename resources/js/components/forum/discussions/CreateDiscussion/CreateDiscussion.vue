@@ -16,7 +16,7 @@ import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
 import TopicSelector from './TopicSelector.vue';
-const { isOpen, btnTitle, title, body, hideDrawer, createDiscussion } = useCreateDiscussion();
+const { isOpen, btnTitle, form, hideDrawer, createDiscussion } = useCreateDiscussion();
 </script>
 
 <template>
@@ -49,10 +49,28 @@ const { isOpen, btnTitle, title, body, hideDrawer, createDiscussion } = useCreat
                 </div>
                 <div class="px-2">
                     <div class="flex space-x-2">
-                        <input type="text" v-model="title" placeholder="Discussion Title" class="w-full rounded-lg border px-4" />
+                        <div>
+                            <input
+                                type="text"
+                                v-model="form.title"
+                                placeholder="Discussion Title"
+                                class="h-9 w-full rounded-lg border px-4"
+                                :class="{ 'border-red-500': form.errors.title }"
+                            />
+                            <div class="mx-4 mt-2 text-xs font-thin text-red-600" v-if="form.errors.title">{{ form.errors.title }}</div>
+                        </div>
                         <TopicSelector />
                     </div>
-                    <textarea v-model="body" class="mt-2 w-full rounded-lg border px-4 py-2" rows="3" placeholder="Post Content"></textarea>
+                    <div>
+                        <textarea
+                            v-model="form.body"
+                            class="mt-2 w-full rounded-lg border px-4 py-2"
+                            :class="{ 'border-red-500': form.errors.title }"
+                            rows="3"
+                            placeholder="Post Content"
+                        ></textarea>
+                        <div class="mx-4 text-xs font-thin text-red-600" v-if="form.errors.body">{{ form.errors.body }}</div>
+                    </div>
                 </div>
                 <DrawerFooter>
                     <div class="flex space-x-2">

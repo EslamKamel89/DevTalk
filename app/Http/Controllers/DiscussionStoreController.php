@@ -16,6 +16,7 @@ class DiscussionStoreController extends Controller {
         $discussion = Discussion::create(
             $request->validated() + ['user_id' => auth()->id()]
         );
+
         $discussion->posts()->create(
             ['body' => $request->body, 'user_id' => auth()->id()]
         );
