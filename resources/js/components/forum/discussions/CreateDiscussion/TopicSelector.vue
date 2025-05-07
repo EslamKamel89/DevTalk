@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
+import { formatError } from '@/utils/formateError';
 const { form, topics } = useCreateDiscussion();
 </script>
 
@@ -17,6 +18,6 @@ const { form, topics } = useCreateDiscussion();
                 </SelectGroup>
             </SelectContent>
         </Select>
-        <div class="mx-4 mt-2 text-xs font-thin text-red-600" v-if="form.errors.topic_id">{{ form.errors.topic_id }}</div>
+        <div class="mx-4 mt-2 text-xs font-thin text-red-600" v-if="form.errors.topic_id">{{ formatError(form.errors.topic_id) }}</div>
     </div>
 </template>

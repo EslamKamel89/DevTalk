@@ -13,6 +13,7 @@ import {
 import Separator from '@/components/ui/separator/Separator.vue';
 // import { VisStackedBar, VisXYContainer } from '@unovis/vue';
 import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
+import { formatError } from '@/utils/formateError';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
 import TopicSelector from './TopicSelector.vue';
@@ -57,7 +58,7 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion } = useCreateDiscus
                                 class="h-9 w-full rounded-lg border px-4"
                                 :class="{ 'border-red-500': form.errors.title }"
                             />
-                            <div class="mx-4 mt-2 text-xs font-thin text-red-600" v-if="form.errors.title">{{ form.errors.title }}</div>
+                            <div class="mx-4 mt-2 text-xs font-thin text-red-600" v-if="form.errors.title">{{ formatError(form.errors.title) }}</div>
                         </div>
                         <TopicSelector />
                     </div>
@@ -69,7 +70,9 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion } = useCreateDiscus
                             rows="3"
                             placeholder="Post Content"
                         ></textarea>
-                        <div class="mx-4 text-xs font-thin text-red-600" v-if="form.errors.body">{{ form.errors.body }}</div>
+                        <div class="mx-4 text-xs font-thin text-red-600" v-if="form.errors.body">
+                            {{ formatError(form.errors.body) }}
+                        </div>
                     </div>
                 </div>
                 <DrawerFooter>
