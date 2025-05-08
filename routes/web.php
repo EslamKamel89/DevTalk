@@ -3,6 +3,7 @@
 use App\Http\Controllers\DiscussionShowController;
 use App\Http\Controllers\DiscussionStoreController;
 use App\Http\Controllers\ForumIndexController;
+use App\Http\Controllers\MarkdownController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -13,7 +14,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/discussions', DiscussionStoreController::class)
         ->name('discussions.store');
 });
-Route::post('/markdown', "MarkdownController@previewMarkdown")->name('markdown');
+Route::post('/markdown', [MarkdownController::class, "previewMarkdown"])->name('markdown');
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');

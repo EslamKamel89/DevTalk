@@ -1,6 +1,7 @@
 import { SharedData } from '@/types';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
+import { useAxios } from './useAxios';
 const page = usePage<SharedData>();
 const form = useForm({
     title: null as string | null,
@@ -15,6 +16,7 @@ const topics = computed(() => page.props.topics);
 const btnTitle = computed(() => {
     return form?.title || form?.body ? 'Finish & Share' : 'Create Discussion';
 });
+
 const hideDrawer = () => {
     isOpen.value = false;
 };
@@ -26,11 +28,20 @@ const createDiscussion = () => {
         },
     });
 };
-const toggleMarkdown = () => {
+const toggleMarkdown = async () => {
     if (isMarkdownVisible.value) {
         markdownPreview.value = '';
     } else {
-        // todo:fetch markdown
+        const { data, execute, error } = useAxios<{ body?: string | null }>({
+            url: route('markdown'),
+            data: { body: form.body },
+            method: 'POST',
+        });
+        await execute();
+        if (error.value) {
+        } else {
+            markdownPreview.value = data.value?.body ?? '';
+        }
     }
     isMarkdownVisible.value = !isMarkdownVisible.value;
 };
