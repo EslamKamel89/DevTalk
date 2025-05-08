@@ -19,7 +19,7 @@ class PostResource extends JsonResource {
             'discussion_id' => $this->discussion_id,
             'parent_id' => $this->parent_id,
             'body' => $this->body,
-            'html' => str($this->body)->markdown(),
+            'html' => app(\Spatie\LaravelMarkdown\MarkdownRenderer::class)->highlightTheme('dracula')->toHtml($this->body),
             'created_at' => DateTimeResource::make($this->created_at),
             'user' => UserResource::make($this->whenLoaded('user')),
             'discussion' => DiscussionResource::make($this->whenLoaded('discussion')),

@@ -29,3 +29,4 @@ const props = defineProps<{
         </template>
     </ForumLayout>
 </template>
+<style></style>
