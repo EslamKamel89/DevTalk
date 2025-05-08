@@ -13,6 +13,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/discussions', DiscussionStoreController::class)
         ->name('discussions.store');
 });
+Route::post('/markdown', "MarkdownController@previewMarkdown")->name('markdown');
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
