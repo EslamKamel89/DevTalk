@@ -67,7 +67,7 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion, isMarkdownVisible 
                     </div>
                     <div>
                         <textarea
-                            v-if="isMarkdownVisible"
+                            v-if="!isMarkdownVisible"
                             v-model="form.body"
                             class="mt-2 w-full rounded-lg border px-4 py-2"
                             :class="{ 'border-red-500': form.errors.title }"
