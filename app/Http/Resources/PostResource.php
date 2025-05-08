@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class PostResource extends JsonResource {
     /**
@@ -18,6 +19,7 @@ class PostResource extends JsonResource {
             'discussion_id' => $this->discussion_id,
             'parent_id' => $this->parent_id,
             'body' => $this->body,
+            'html' => str($this->body)->markdown(),
             'created_at' => DateTimeResource::make($this->created_at),
             'user' => UserResource::make($this->whenLoaded('user')),
             'discussion' => DiscussionResource::make($this->whenLoaded('discussion')),

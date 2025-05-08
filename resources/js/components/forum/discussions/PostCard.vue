@@ -33,9 +33,7 @@ onUnmounted(() => {
                 </template>
                 <span class="text-xs font-normal text-gray-500 dark:text-gray-300" :title="post.created_at?.raw">{{ post.created_at.friendly }}</span>
             </div>
-            <p class="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                {{ post.body }}
-            </p>
+            <p class="py-2.5 text-sm font-normal text-gray-900 dark:text-white" v-html="post.html"></p>
             <!--
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
             -->
