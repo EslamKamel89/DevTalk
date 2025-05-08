@@ -16,8 +16,11 @@ import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
 import { formatError } from '@/utils/formateError';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
+import MarkdownToolbar from './MarkdownToolbar.vue';
+import PreviewMarkdown from './PreviewMarkdown.vue';
+import PreviewMarkdownBtn from './PreviewMarkdownBtn.vue';
 import TopicSelector from './TopicSelector.vue';
-const { isOpen, btnTitle, form, hideDrawer, createDiscussion } = useCreateDiscussion();
+const { isOpen, btnTitle, form, hideDrawer, createDiscussion, isMarkdownVisible } = useCreateDiscussion();
 </script>
 
 <template>
@@ -31,7 +34,7 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion } = useCreateDiscus
             </div>
         </DrawerTrigger>
         <DrawerContent>
-            <form class="mx-auto w-full max-w-2xl overflow-auto" @submit.prevent="createDiscussion">
+            <form class="mx-auto h-full w-full max-w-2xl overflow-y-auto" @submit.prevent="createDiscussion">
                 <div class="px-2">
                     <DrawerHeader>
                         <DrawerTitle>
@@ -64,14 +67,20 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion } = useCreateDiscus
                     </div>
                     <div>
                         <textarea
+                            v-if="isMarkdownVisible"
                             v-model="form.body"
                             class="mt-2 w-full rounded-lg border px-4 py-2"
                             :class="{ 'border-red-500': form.errors.title }"
                             rows="3"
                             placeholder="Post Content"
                         ></textarea>
+                        <PreviewMarkdown v-else />
                         <div class="mx-4 text-xs font-thin text-red-600" v-if="form.errors.body">
                             {{ formatError(form.errors.body) }}
+                        </div>
+                        <div class="flex w-full items-center justify-between">
+                            <MarkdownToolbar />
+                            <PreviewMarkdownBtn />
                         </div>
                     </div>
                 </div>
