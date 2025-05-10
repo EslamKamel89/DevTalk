@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Markdown from '@/components/shared/Markdown.vue';
+import MarkdownLocal from '@/components/shared/MarkdownLocal.vue';
 import { Post } from '@/types/types';
 import { onMounted, onUnmounted, ref } from 'vue';
 
@@ -34,8 +34,11 @@ onUnmounted(() => {
                 </template>
                 <span class="text-xs font-normal text-gray-500 dark:text-gray-300" :title="post.created_at?.raw">{{ post.created_at.friendly }}</span>
             </div>
-            <p class="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                <Markdown :html="post.html" />
+            <p class="rounded bg-white p-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                <!--
+                    <Markdown :html="post.html" />
+                -->
+                <MarkdownLocal :content="post.body" :id="`post-preview-${post.id}`" />
             </p>
             <!--
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>

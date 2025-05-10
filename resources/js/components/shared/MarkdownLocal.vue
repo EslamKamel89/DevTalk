@@ -10,7 +10,7 @@ const props = defineProps<{
 </script>
 <template>
     <div class="mx-5 mt-4">
-        <MdPreview :id="id" :modelValue="content" />
-        <MdCatalog :editorId="id" :scrollElement="scrollElement" />
+        <MdPreview language="en" :id="id" :modelValue="content" />
+        <MdCatalog language="en" :editorId="id" :scrollElement="scrollElement" />
     </div>
 </template>
