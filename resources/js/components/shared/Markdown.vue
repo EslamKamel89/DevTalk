@@ -9,15 +9,4 @@ const props = defineProps<{
     </div>
 </template>
 
-<style>
-code {
-    @apply leading-lose rounded-xl p-10 whitespace-pre-wrap shadow-2xl;
-}
-
-#strong1-using-the-codearrcode-helperstrong {
-    @apply my-5;
-}
-#strongbasic-usagestrong {
-    @apply my-2;
-}
-</style>
+<style></style>

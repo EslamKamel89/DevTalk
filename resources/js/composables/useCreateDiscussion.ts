@@ -2,6 +2,7 @@ import { SharedData } from '@/types';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { useAxios } from './useAxios';
+import { useToaster } from './useToaster';
 const page = usePage<SharedData>();
 const form = useForm({
     title: null as string | null,
@@ -10,6 +11,7 @@ const form = useForm({
 });
 const isOpen = ref(false);
 const isMarkdownVisible = ref(false);
+const markdownLoading = ref(false);
 const markdownPreview = ref('');
 // const btnTitle = ref<string>('Create Discussion'); // Finish & Share
 const topics = computed(() => page.props.topics);
@@ -20,9 +22,11 @@ const btnTitle = computed(() => {
 const hideDrawer = () => {
     isOpen.value = false;
 };
+const { showToast, showGenericError } = useToaster();
 const createDiscussion = () => {
     form.post(route('discussions.store'), {
         onSuccess: () => {
+            showToast({ title: 'Success', description: 'Discussion Created Successfully', type: 'success' });
             form.reset();
             hideDrawer();
         },
@@ -31,19 +35,28 @@ const createDiscussion = () => {
 const toggleMarkdown = async () => {
     if (isMarkdownVisible.value) {
         markdownPreview.value = '';
+        isMarkdownVisible.value = !isMarkdownVisible.value;
     } else {
-        const { data, execute, error } = useAxios<{ body?: string | null }>({
-            url: route('markdown'),
-            data: { body: form.body },
-            method: 'POST',
-        });
-        await execute();
-        if (error.value) {
-        } else {
-            markdownPreview.value = data.value?.body ?? '';
+        isMarkdownVisible.value = !isMarkdownVisible.value;
+        try {
+            const { data, execute, error } = useAxios<{ body?: string | null }>({
+                url: route('markdown'),
+                data: { body: form.body },
+                method: 'POST',
+            });
+            markdownLoading.value = true;
+            await execute();
+            if (error.value) {
+                showGenericError();
+            } else {
+                markdownPreview.value = data.value?.body ?? '';
+            }
+        } catch (error) {
+            showGenericError();
+        } finally {
+            markdownLoading.value = false;
         }
     }
-    isMarkdownVisible.value = !isMarkdownVisible.value;
 };
 export const useCreateDiscussion = () => {
     return {
@@ -55,6 +68,7 @@ export const useCreateDiscussion = () => {
         createDiscussion,
         isMarkdownVisible,
         markdownPreview,
+        markdownLoading,
         toggleMarkdown,
     };
 };
