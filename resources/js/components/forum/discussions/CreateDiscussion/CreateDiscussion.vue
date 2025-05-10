@@ -15,6 +15,8 @@ import Separator from '@/components/ui/separator/Separator.vue';
 import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
 import { formatError } from '@/utils/formateError';
 import { MessageSquareCode, X } from 'lucide-vue-next';
+import { MdEditor } from 'md-editor-v3';
+import 'md-editor-v3/lib/style.css';
 import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
 import MarkdownToolbar from './MarkdownToolbar.vue';
 import PreviewMarkdown from './PreviewMarkdown.vue';
@@ -65,15 +67,18 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion, isMarkdownVisible 
                         </div>
                         <TopicSelector />
                     </div>
-                    <div>
-                        <textarea
+                    <div class="mt-4">
+                        <MdEditor v-model="form.body" v-if="!isMarkdownVisible" />
+                        <!--
+                            <textarea
                             v-if="!isMarkdownVisible"
                             v-model="form.body"
-                            class="mt-2 w-full rounded-lg border px-4 py-2"
+                            class="w-full px-4 py-2 mt-2 border rounded-lg"
                             :class="{ 'border-red-500': form.errors.title }"
                             rows="3"
                             placeholder="Post Content"
-                        ></textarea>
+                            ></textarea>
+                        -->
                         <PreviewMarkdown v-else />
                         <div class="mx-4 text-xs font-thin text-red-600" v-if="form.errors.body">
                             {{ formatError(form.errors.body) }}
