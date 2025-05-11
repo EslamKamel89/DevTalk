@@ -12,13 +12,13 @@ import {
 } from '@/components/ui/drawer';
 import Separator from '@/components/ui/separator/Separator.vue';
 // import { VisStackedBar, VisXYContainer } from '@unovis/vue';
+import PreviewMarkdown from '@/components/forum/reply/PreviewMarkdown.vue';
+import PreviewMarkdownBtn from '@/components/forum/reply/PreviewMarkdownBtn.vue';
 import { useCreatePost } from '@/composables/useCreatePost';
 import { formatError } from '@/utils/formateError';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
-import PreviewMarkdown from '../discussions/CreateDiscussion/PreviewMarkdown.vue';
-import PreviewMarkdownBtn from '../discussions/CreateDiscussion/PreviewMarkdownBtn.vue';
 const { isOpen, btnTitle, form, hideDrawer, createPost, isMarkdownVisible } = useCreatePost();
 </script>
 
@@ -46,7 +46,7 @@ const { isOpen, btnTitle, form, hideDrawer, createPost, isMarkdownVisible } = us
                             </div>
                         </DrawerTitle>
                         <DrawerDescription>
-                            <div>Description</div>
+                            <div>Got a fix? Found a bug? Just wanna geek out? Type away!</div>
                         </DrawerDescription>
                     </DrawerHeader>
                 </div>

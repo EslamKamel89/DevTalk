@@ -25,7 +25,7 @@ const hideDrawer = () => {
 };
 const { showToast, showGenericError } = useToaster();
 const createPost = () => {
-    form.post(route('posts.store', { discussion: discussion.value?.id }), {
+    form.post(route('posts.store', { discussion: discussion.value?.slug }), {
         onSuccess: () => {
             showToast({ title: 'Success', description: 'Post Created Successfully', type: 'success' });
             form.reset();
