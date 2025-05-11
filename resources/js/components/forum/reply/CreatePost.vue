@@ -12,16 +12,14 @@ import {
 } from '@/components/ui/drawer';
 import Separator from '@/components/ui/separator/Separator.vue';
 // import { VisStackedBar, VisXYContainer } from '@unovis/vue';
-import { useCreateDiscussion } from '@/composables/useCreateDiscussion';
+import { useCreatePost } from '@/composables/useCreatePost';
 import { formatError } from '@/utils/formateError';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
-import CreateDiscussionHeader from './CreateDiscussionHeader.vue';
-import PreviewMarkdown from './PreviewMarkdown.vue';
-import PreviewMarkdownBtn from './PreviewMarkdownBtn.vue';
-import TopicSelector from './TopicSelector.vue';
-const { isOpen, btnTitle, form, hideDrawer, createDiscussion, isMarkdownVisible } = useCreateDiscussion();
+import PreviewMarkdown from '../discussions/CreateDiscussion/PreviewMarkdown.vue';
+import PreviewMarkdownBtn from '../discussions/CreateDiscussion/PreviewMarkdownBtn.vue';
+const { isOpen, btnTitle, form, hideDrawer, createPost, isMarkdownVisible } = useCreatePost();
 </script>
 
 <template>
@@ -35,12 +33,12 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion, isMarkdownVisible 
             </div>
         </DrawerTrigger>
         <DrawerContent>
-            <form class="mx-auto h-full w-full max-w-2xl overflow-y-auto" @submit.prevent="createDiscussion">
+            <form class="mx-auto h-full w-full max-w-2xl overflow-y-auto" @submit.prevent="createPost">
                 <div class="px-2">
                     <DrawerHeader>
                         <DrawerTitle>
                             <div class="flex w-full justify-between">
-                                <div>Create Discussion</div>
+                                <div>Create Reply</div>
                                 <X
                                     @click="hideDrawer"
                                     class="h-9 w-9 cursor-pointer rounded-full border px-2 py-1 shadow hover:scale-110 hover:shadow-lg"
@@ -48,36 +46,14 @@ const { isOpen, btnTitle, form, hideDrawer, createDiscussion, isMarkdownVisible 
                             </div>
                         </DrawerTitle>
                         <DrawerDescription>
-                            <CreateDiscussionHeader />
+                            <div>Description</div>
                         </DrawerDescription>
                     </DrawerHeader>
                 </div>
                 <div class="px-2">
-                    <div class="flex space-x-2">
-                        <div>
-                            <input
-                                type="text"
-                                v-model="form.title"
-                                placeholder="Discussion Title"
-                                class="h-9 w-full rounded-lg border px-4"
-                                :class="{ 'border-red-500': form.errors.title }"
-                            />
-                            <div class="mx-4 mt-2 text-xs font-thin text-red-600" v-if="form.errors.title">{{ formatError(form.errors.title) }}</div>
-                        </div>
-                        <TopicSelector />
-                    </div>
                     <div class="mt-4">
                         <MdEditor v-model="form.body" v-if="!isMarkdownVisible" />
-                        <!--
-                            <textarea
-                            v-if="!isMarkdownVisible"
-                            v-model="form.body"
-                            class="w-full px-4 py-2 mt-2 border rounded-lg"
-                            :class="{ 'border-red-500': form.errors.title }"
-                            rows="3"
-                            placeholder="Post Content"
-                            ></textarea>
-                        -->
+
                         <PreviewMarkdown v-else />
                         <div class="mx-4 text-xs font-thin text-red-600" v-if="form.errors.body">
                             {{ formatError(form.errors.body) }}
