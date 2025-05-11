@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Avatars from '@/components/shared/avatars.vue';
+import MarkdownLocal from '@/components/shared/MarkdownLocal.vue';
+import Button from '@/components/ui/button/Button.vue';
 import { Discussion } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
 import { Pin } from 'lucide-vue-next';
@@ -26,8 +28,13 @@ const props = defineProps<{
             <Link
                 :href="route('discussions.show', discussion.slug)"
                 class="line-clamp-1 cursor-pointer rounded-xl px-2 py-1 text-sm font-normal text-gray-700 hover:bg-white hover:text-black"
-                >{{ discussion.first_post?.body }}</Link
             >
+                <MarkdownLocal
+                    :content="discussion.first_post?.body?.substring(0, 100) ?? ''"
+                    :id="`markdown-local-discussion-card-${discussion.first_post?.id}`"
+                />
+                <Button variant="link">Read More</Button>
+            </Link>
             <div class="flex w-full justify-end text-xs text-gray-600">
                 <div>
                     <span v-if="discussion.latest_post" class="" :title="discussion.latest_post.created_at?.raw">

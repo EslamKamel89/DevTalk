@@ -1,24 +1,30 @@
 <script setup lang="ts">
 import MarkdownLocal from '@/components/shared/MarkdownLocal.vue';
+import Button from '@/components/ui/button/Button.vue';
+import { SharedData } from '@/types';
 import { Post } from '@/types/types';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+import { Pencil, Trash2 } from 'lucide-vue-next';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
     post: Post;
 }>();
 const showOptions = ref(false);
 const dropdownRef = ref<HTMLElement | null>(null);
-function handleClickOutside(event: MouseEvent) {
-    if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
-        showOptions.value = false;
-    }
-}
+const page = usePage<SharedData>();
+const user = computed(() => page.props.auth.user);
+// function handleClickOutside(event: MouseEvent) {
+//     if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
+//         showOptions.value = false;
+//     }
+// }
 onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
+    // document.addEventListener('click', handleClickOutside);
 });
 
 onUnmounted(() => {
-    document.removeEventListener('click', handleClickOutside);
+    // document.removeEventListener('click', handleClickOutside);
 });
 </script>
 <template>
@@ -44,17 +50,18 @@ onUnmounted(() => {
             <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
             -->
         </div>
+        <!--
         <button
             ref="dropdownRef"
             id="dropdownMenuIconButton"
             data-dropdown-toggle="dropdownDots"
             data-dropdown-placement="bottom-start"
-            class="inline-flex items-center self-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-900 hover:bg-gray-100 focus:ring-4 focus:ring-gray-50 focus:outline-none dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
+            class="inline-flex items-center self-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-50 focus:outline-none dark:bg-gray-900 dark:text-white dark:hover:bg-gray-800 dark:focus:ring-gray-600"
             type="button"
             @click="showOptions = !showOptions"
         >
             <svg
-                class="h-4 w-4 text-gray-500 dark:text-gray-400"
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -68,7 +75,7 @@ onUnmounted(() => {
         <div
             v-if="showOptions"
             id="dropdownDots"
-            class="absolute top-24 right-0 z-10 w-40 divide-y divide-gray-100 rounded-lg bg-white shadow-sm dark:divide-gray-600 dark:bg-gray-700"
+            class="absolute right-0 z-10 w-40 bg-white divide-y divide-gray-100 rounded-lg shadow-sm top-24 dark:divide-gray-600 dark:bg-gray-700"
         >
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
                 <li>
@@ -88,5 +95,14 @@ onUnmounted(() => {
                 </li>
             </ul>
         </div>
+        -->
+    </div>
+    <div class="flex w-full justify-end space-x-3" v-if="user.id == post.user_id">
+        <Button variant="outline" size="icon" title="Edit">
+            <Pencil class="h-4 w-4" />
+        </Button>
+        <Button variant="destructive" size="icon" title="Delete">
+            <Trash2 class="h-4 w-4" />
+        </Button>
     </div>
 </template>
