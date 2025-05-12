@@ -20,8 +20,11 @@ const btnTitle = computed(() => {
     return form?.body ? 'Finish & Post' : 'Add Reply';
 });
 
-const hideDrawer = () => {
+const hideForm = () => {
     isOpen.value = false;
+};
+const showForm = () => {
+    isOpen.value = true;
 };
 const { showToast, showGenericError } = useToaster();
 const createPost = () => {
@@ -29,7 +32,7 @@ const createPost = () => {
         onSuccess: () => {
             showToast({ title: 'Success', description: 'Post Created Successfully', type: 'success' });
             form.reset();
-            hideDrawer();
+            hideForm();
         },
     });
 };
@@ -52,7 +55,8 @@ export const useCreatePost = () => {
         btnTitle,
         topics,
         form,
-        hideDrawer,
+        hideForm,
+        showForm,
         createPost,
         isMarkdownVisible,
         markdownPreview,
