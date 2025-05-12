@@ -25,7 +25,7 @@ const handleReply = () => {
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <template v-if="post.user">
                     <img class="h-8 w-8 rounded-full" :src="post.user.avatar" alt="user image" />
-                    <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ post.user.name }}</span>
+                    <span class="text-sm font-semibold text-gray-900 dark:text-white">{{ `${post.id} - ${post.user.name}` }}</span>
                 </template>
                 <template v-else>
                     <span class="text-sm font-semibold text-gray-900 dark:text-white">[User Deleted]</span>
