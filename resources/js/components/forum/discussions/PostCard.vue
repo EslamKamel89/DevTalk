@@ -4,7 +4,7 @@ import Button from '@/components/ui/button/Button.vue';
 import { SharedData } from '@/types';
 import { Post } from '@/types/types';
 import { usePage } from '@inertiajs/vue3';
-import { Pencil, Trash2 } from 'lucide-vue-next';
+import { MessageSquareQuote, Pencil, Trash2 } from 'lucide-vue-next';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
@@ -97,12 +97,19 @@ onUnmounted(() => {
         </div>
         -->
     </div>
-    <div class="flex w-full justify-end space-x-3" v-if="user.id == post.user_id">
-        <Button variant="outline" size="icon" title="Edit">
-            <Pencil class="h-4 w-4" />
-        </Button>
-        <Button variant="destructive" size="icon" title="Delete">
-            <Trash2 class="h-4 w-4" />
-        </Button>
-    </div>
+    <template v-if="user">
+        <div class="flex w-full justify-end space-x-3">
+            <template v-if="user?.id == post.user_id">
+                <Button variant="destructive" size="icon" title="Delete">
+                    <Trash2 class="h-4 w-4" />
+                </Button>
+                <Button variant="outline" size="icon" title="Edit">
+                    <Pencil class="h-4 w-4" />
+                </Button>
+            </template>
+            <Button variant="default" size="icon" title="Reply">
+                <MessageSquareQuote class="h-4 w-4" />
+            </Button>
+        </div>
+    </template>
 </template>
