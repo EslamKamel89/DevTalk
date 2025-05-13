@@ -7,8 +7,9 @@ import { useCreatePost } from '@/composables/useCreatePost';
 import ForumLayout from '@/layouts/ForumLayout.vue';
 import { SharedData } from '@/types';
 import { Discussion, PaginationType, Post } from '@/types/types';
+import scrollTo from '@/utils/scrollTo';
 import { Head, usePage } from '@inertiajs/vue3';
-import { nextTick, onMounted } from 'vue';
+import { onMounted, onUpdated } from 'vue';
 
 const props = defineProps<{
     discussion: Discussion;
@@ -19,16 +20,12 @@ onMounted(() => {
     useCreatePost().init(props.discussion);
     const postId = page.props.query.postId;
     if (!postId) return;
-    nextTick().then((_) => {
-        const element = document.getElementById(`post-${postId}`);
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                // block: 'center',
-                // inline: 'start',
-            });
-        }
-    });
+    scrollTo(`post-${postId}`);
+});
+onUpdated(() => {
+    const postId = page.props.query.postId;
+    if (!postId) return;
+    scrollTo(`post-${postId}`);
 });
 </script>
 <template>
