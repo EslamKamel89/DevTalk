@@ -5,16 +5,30 @@ import PaginationComp from '@/components/shared/PaginationComp.vue';
 import Side from '@/components/shared/Side.vue';
 import { useCreatePost } from '@/composables/useCreatePost';
 import ForumLayout from '@/layouts/ForumLayout.vue';
+import { SharedData } from '@/types';
 import { Discussion, PaginationType, Post } from '@/types/types';
-import { Head } from '@inertiajs/vue3';
-import { onMounted } from 'vue';
+import { Head, usePage } from '@inertiajs/vue3';
+import { nextTick, onMounted } from 'vue';
 
 const props = defineProps<{
     discussion: Discussion;
     posts: PaginationType<Post>;
 }>();
+const page = usePage<SharedData>();
 onMounted(() => {
     useCreatePost().init(props.discussion);
+    const postId = page.props.query.postId;
+    if (!postId) return;
+    nextTick().then((_) => {
+        const element = document.getElementById(`post-${postId}`);
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                // block: 'center',
+                // inline: 'start',
+            });
+        }
+    });
 });
 </script>
 <template>

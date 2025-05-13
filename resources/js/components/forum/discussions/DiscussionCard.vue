@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Avatars from '@/components/shared/avatars.vue';
+import Avatars from '@/components/shared/Avatars.vue';
 import { Discussion } from '@/types/types';
 import { Link } from '@inertiajs/vue3';
 import { Pin } from 'lucide-vue-next';
@@ -9,7 +9,7 @@ defineProps<{
 }>();
 </script>
 <template>
-    <Link :href="route('discussions.show', discussion.slug)">
+    <Link :href="route('discussions.show', { discussion: discussion.slug })">
         <div class="my-2 block w-full rounded-lg border border-gray-200 bg-white p-6 shadow-sm hover:bg-gray-100">
             <div class="flex flex-row items-center">
                 <div class="flex-1">

@@ -20,7 +20,7 @@ const handleReply = () => {
 };
 </script>
 <template>
-    <div class="relative flex items-start gap-2.5">
+    <div :id="`post-${post.id}`" class="relative flex items-start gap-2.5">
         <div class="flex w-full flex-col rounded-e-xl rounded-es-xl border-gray-200 bg-gray-100 p-4 leading-1.5 dark:bg-gray-700">
             <div class="flex items-center space-x-2 rtl:space-x-reverse">
                 <template v-if="post.user">
