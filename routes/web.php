@@ -5,6 +5,7 @@ use App\Http\Controllers\DiscussionStoreController;
 use App\Http\Controllers\ForumIndexController;
 use App\Http\Controllers\MarkdownController;
 use App\Http\Controllers\PostStoreController;
+use App\Http\Controllers\PostUpdateController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +17,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('discussions.store');
     Route::post('/discussions/{discussion:slug}/posts', PostStoreController::class)
         ->name('posts.store');
+    Route::put('/posts/{post}', PostUpdateController::class)
+        ->name('posts.update');
 });
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');
