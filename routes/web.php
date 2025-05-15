@@ -4,6 +4,7 @@ use App\Http\Controllers\DiscussionShowController;
 use App\Http\Controllers\DiscussionStoreController;
 use App\Http\Controllers\ForumIndexController;
 use App\Http\Controllers\MarkdownController;
+use App\Http\Controllers\PostDeleteController;
 use App\Http\Controllers\PostStoreController;
 use App\Http\Controllers\PostUpdateController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.store');
     Route::put('/posts/{post}', PostUpdateController::class)
         ->name('posts.update');
+    Route::delete('/posts/{post}', PostDeleteController::class)
+        ->name('posts.destroy');
 });
 // Route::get('dashboard', function () {
 //     return Inertia::render('Dashboard');

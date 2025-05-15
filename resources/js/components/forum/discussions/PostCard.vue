@@ -5,7 +5,7 @@ import { useCreatePost } from '@/composables/useCreatePost';
 import useUpdatePost from '@/composables/useUpdatePost';
 import { SharedData } from '@/types';
 import { Post } from '@/types/types';
-import { usePage } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3';
 import { MessageSquareQuote, Pencil, Trash2 } from 'lucide-vue-next';
 import { MdEditor } from 'md-editor-v3';
 import { computed } from 'vue';
@@ -21,6 +21,13 @@ const handleReply = () => {
     showForm();
 };
 const { form: updateForm, handleSubmit, isEditFormVisible, toggleEditForm } = useUpdatePost(props.post);
+const handleDelete = () => {
+    router.delete(route('posts.destroy', { post: props.post.id }), {
+        preserveScroll: true,
+        preserveUrl: true,
+        onBefore: () => confirm('Are you sure you want to delete this post?'),
+    });
+};
 </script>
 <template>
     <div :id="`post-${post.id}`" class="relative flex items-start gap-2.5">
@@ -52,7 +59,7 @@ const { form: updateForm, handleSubmit, isEditFormVisible, toggleEditForm } = us
     <template v-if="user && !isEditFormVisible">
         <div class="flex w-full justify-end space-x-3">
             <template v-if="user?.id == post.user_id">
-                <Button variant="destructive" size="icon" title="Delete">
+                <Button variant="destructive" size="icon" title="Delete" @click="handleDelete" v-if="post.parent_id">
                     <Trash2 class="h-4 w-4" />
                 </Button>
                 <Button variant="outline" size="icon" title="Edit" @click="toggleEditForm(true)">
