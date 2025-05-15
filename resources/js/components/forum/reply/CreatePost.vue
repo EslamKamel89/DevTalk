@@ -19,7 +19,7 @@ import { formatError } from '@/utils/formateError';
 import { MessageSquareCode, X } from 'lucide-vue-next';
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
-const { isOpen, btnTitle, form, hideDrawer, createPost, isMarkdownVisible } = useCreatePost();
+const { isOpen, btnTitle, form, hideForm, createPost, isMarkdownVisible } = useCreatePost();
 </script>
 
 <template>
@@ -40,7 +40,7 @@ const { isOpen, btnTitle, form, hideDrawer, createPost, isMarkdownVisible } = us
                             <div class="flex w-full justify-between">
                                 <div>Create Reply</div>
                                 <X
-                                    @click="hideDrawer"
+                                    @click="hideForm"
                                     class="h-9 w-9 cursor-pointer rounded-full border px-2 py-1 shadow hover:scale-110 hover:shadow-lg"
                                 />
                             </div>

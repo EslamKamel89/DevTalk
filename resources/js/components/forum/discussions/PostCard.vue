@@ -2,10 +2,12 @@
 import MarkdownLocal from '@/components/shared/MarkdownLocal.vue';
 import Button from '@/components/ui/button/Button.vue';
 import { useCreatePost } from '@/composables/useCreatePost';
+import useUpdatePost from '@/composables/useUpdatePost';
 import { SharedData } from '@/types';
 import { Post } from '@/types/types';
 import { usePage } from '@inertiajs/vue3';
 import { MessageSquareQuote, Pencil, Trash2 } from 'lucide-vue-next';
+import { MdEditor } from 'md-editor-v3';
 import { computed } from 'vue';
 
 const props = defineProps<{
@@ -18,6 +20,7 @@ const handleReply = () => {
     form.parent_id = props.post.id;
     showForm();
 };
+const { form: updateForm, handleSubmit, isEditFormVisible, toggleEditForm } = useUpdatePost(props.post);
 </script>
 <template>
     <div :id="`post-${post.id}`" class="relative flex items-start gap-2.5">
@@ -33,17 +36,26 @@ const handleReply = () => {
                 <span class="text-xs font-normal text-gray-500 dark:text-gray-300" :title="post.created_at?.raw">{{ post.created_at.friendly }}</span>
             </div>
             <p class="rounded bg-white p-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                <MarkdownLocal :content="post.body" :id="`post-preview-${post.id}`" />
+                <MarkdownLocal :content="post.body" :id="`post-preview-${post.id}`" v-if="!isEditFormVisible" />
+                <template v-else>
+                    <form @submit.prevent="handleSubmit" class="flex flex-col space-y-2">
+                        <MdEditor v-model="updateForm.body" />
+                        <div class="flex space-x-2">
+                            <Button type="submit">Save</Button>
+                            <Button type="button" variant="destructive" @click="toggleEditForm(false)">Cancel</Button>
+                        </div>
+                    </form>
+                </template>
             </p>
         </div>
     </div>
-    <template v-if="user">
+    <template v-if="user && !isEditFormVisible">
         <div class="flex w-full justify-end space-x-3">
             <template v-if="user?.id == post.user_id">
                 <Button variant="destructive" size="icon" title="Delete">
                     <Trash2 class="h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="icon" title="Edit">
+                <Button variant="outline" size="icon" title="Edit" @click="toggleEditForm(true)">
                     <Pencil class="h-4 w-4" />
                 </Button>
             </template>
