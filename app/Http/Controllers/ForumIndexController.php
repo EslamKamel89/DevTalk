@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\MineFilter;
-use App\Http\Filters\NoReplyFilter;
-use App\Http\Filters\ParticipatingFilter;
-use App\Http\Filters\PopularFilter;
+use App\Http\filters\MineFilter;
+use App\Http\filters\NoReplyFilter;
+use App\Http\filters\ParticipatingFilter;
+use App\Http\filters\PopularFilter;
 use App\Http\Resources\DiscussionResource;
 use App\Models\Discussion;
 use Illuminate\Http\Request;

@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
     /** @var array<string> */
-    protected array $topics = ['laravel', 'livewire', 'inertia', 'php'];
+    protected array $topics = ['laravel', 'livewire', 'inertia', 'php', 'flutter', 'nuxt js', 'vue js', 'ASP.NET'];
 
     protected array $discussionTitles = [
         'laravel' => [
@@ -154,6 +154,97 @@ class DatabaseSeeder extends Seeder {
             'Exploring Object-Oriented Programming in PHP' => [
                 ' Refactoring legacy code to use namespaces and autoloading has greatly improved our project structure.',
                 'Design patterns like Singleton and Factory have streamlined our application architecture.',
+            ],
+        ],
+        'flutter' => [
+            'Getting Started with Flutter for Cross-Platform Mobile Development' => [
+                'Flutter’s hot-reload feature significantly speeds up UI development and debugging.',
+                'Dart’s rich widget system allows developers to build beautiful native interfaces quickly.',
+            ],
+            'State Management in Flutter: Which Approach Is Best?' => [
+                'Provider is my go-to solution for state management due to its simplicity and scalability.',
+                'Bloc and Riverpod are also great options for larger apps requiring predictable state changes.',
+            ],
+            'Creating Animations in Flutter' => [
+                'Flutter provides powerful animation APIs that allow developers to create complex motion effects.',
+                'Implicit and explicit animations give fine-grained control over visual behavior.',
+            ],
+            'Flutter vs. React Native: A Developer’s Perspective' => [
+                'Flutter offers better consistency across platforms due to its own rendering engine.',
+                'React Native feels more familiar to web developers but can suffer from platform inconsistencies.',
+            ],
+            'Deploying Flutter Apps to Google Play and App Store' => [
+                'Setting up release builds and signing keys was the most challenging part of deployment.',
+                'Once configured, publishing to both stores was a relatively smooth experience.',
+            ],
+        ],
+
+        'nuxt js' => [
+            'Why Choose Nuxt.js for Your Vue.js Project?' => [
+                'Nuxt.js gives you automatic routing, SSR, and code splitting out of the box.',
+                'Its opinionated structure makes it ideal for scalable Vue applications.',
+            ],
+            'Understanding Middleware in Nuxt.js' => [
+                'Middleware allows us to run custom logic before rendering a page or group of pages.',
+                'We used middleware to manage auth guards and redirect unauthorized users.',
+            ],
+            'Speed Up Your Nuxt.js App with Static Site Generation' => [
+                'By leveraging generate routes, we turned dynamic pages into static HTML files.',
+                'This reduced server load and improved SEO dramatically.',
+            ],
+            'Working with Vuex and Composition API in Nuxt.js' => [
+                'Vuex works well for global state management, especially in large-scale apps.',
+                'The Composition API improves readability and reusability of shared logic.',
+            ],
+            'Deploying Nuxt.js to Vercel and Netlify' => [
+                'Vercel and Netlify make deploying Nuxt apps fast and easy.',
+                'Static generation support means zero configuration for serverless deployments.',
+            ],
+        ],
+
+        'vue js' => [
+            'Vue.js 3 Composition API vs. Options API' => [
+                'The Composition API helps organize logic by concern rather than lifecycle methods.',
+                'Options API still works well for small components or teams transitioning from Vue 2.',
+            ],
+            'Component-Based Architecture in Vue.js' => [
+                'Breaking down the app into reusable components made maintenance much easier.',
+                'Props and events provide clear communication between parent and child components.',
+            ],
+            'Using Vue Router for Dynamic Navigation' => [
+                'Lazy loading routes helped reduce initial load time on large Vue applications.',
+                'Dynamic route matching allowed us to build flexible admin dashboards and user profiles.',
+            ],
+            'Performance Optimization Techniques in Vue.js' => [
+                'Memoization using computed properties kept our app responsive even with large datasets.',
+                'Avoiding unnecessary watchers and optimizing v-for loops made a big difference.',
+            ],
+            'Vue DevTools: Enhancing Debugging Experience' => [
+                'Vue DevTools help inspect component trees, props, and emitted events visually.',
+                'Time-travel debugging and event tracing are invaluable during development.',
+            ],
+        ],
+
+        'ASP.NET' => [
+            'Getting Started with ASP.NET Core for Web APIs' => [
+                'ASP.NET Core is perfect for building RESTful services with minimal overhead.',
+                'Built-in dependency injection and middleware pipeline make it highly testable and modular.',
+            ],
+            'Blazor: Running C# in the Browser' => [
+                'Blazor brings the power of C# and .NET to the frontend with WebAssembly.',
+                'It’s a game-changer for teams with strong C# backgrounds.',
+            ],
+            'Entity Framework Core: Getting the Most Out of ORMs' => [
+                'EF Core abstracts away raw SQL queries while still allowing direct access when needed.',
+                'Code-first migrations made database versioning seamless and reliable.',
+            ],
+            'Securing .NET Applications with Identity and JWT' => [
+                'ASP.NET Identity provides a solid foundation for user registration and login.',
+                'JWT-based authentication ensures secure token exchange in single-page applications.',
+            ],
+            'Improving Performance in .NET Applications' => [
+                'Caching frequently accessed data reduced latency and improved response times.',
+                'Profiling tools like Application Insights helped identify bottlenecks in real-time.',
             ],
         ],
     ];

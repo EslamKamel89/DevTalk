@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { useAppearance } from '@/composables/useAppearance';
+import { onMounted } from 'vue';
 import AppLayout from './AppLayout.vue';
+const { appearance, updateAppearance } = useAppearance();
+onMounted(() => {
+    appearance.value = 'light';
+    updateAppearance('light');
+});
 </script>
 <template>
     <AppLayout class="h-full w-full overflow-hidden">
